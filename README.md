@@ -1,37 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# モバイルミュージアム『見えないメッセージが、音で拡がる。』展
 
-## Getting Started
+視覚に頼らず、音だけで届いてきた「知らせ」の歴史をたどる展示。
 
-First, run the development server:
+## 概要
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+本展は、社会がどのように「音だけ」で情報を共有してきたかを三部構成で紹介します。太鼓や角笛の合図から、読み上げ・口伝、そしてラジオや拡声器まで。音はどのように共同体をつくり、動かしてきたのかを学びます。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 展示構成
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I｜文字がない時代
+	•	主旨：文字以前、音は社会の「合図」だった。危機・儀礼・集合を即時に伝えた。
+	•	例：太鼓・角笛・法螺、半鐘、狼煙と打楽器の連携（解説音源）
+	•	キーワード：合図／同期／範囲と届距離
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+II｜文字の壁を、音が越える時代
+	•	主旨：文字の壁を声が越え、通達は「読み上げ」で公共へ広がった。
+	•	例：触れ太鼓・町触れ、見世物の口上、講談、行商の呼び声、寺社の告知
+	•	キーワード：読み上げ／反復／場所の力（辻・広場）
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# rekihaku-shiryougaku2025
+III｜電気が音を放送に変える時代
+	•	主旨：電気が声を「同時化」し、ラジオ・拡声器・サイレンが群衆へ届く。
+	•	例：ラジオニュース、緊急放送チャイム、駅・商店街アナウンス、拡声器デモ音
+	•	キーワード：同時性／到達範囲の拡大／標準化された音
