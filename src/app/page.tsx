@@ -1,95 +1,74 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 import styles from "./page.module.css";
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+type AudioItem = {
+  url: string;
+  image: string;
+  caption: string;
+  sectionTitle: string;
+};
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+const AUDIO_ITEMS: AudioItem[] = [
+  {
+    url: "null",
+    image: "/images/sample1.jpg",
+    caption: "サンプル音声 1",
+    sectionTitle: "文字がない時代",
+  },
+  {
+    url: "null",
+    image: "/images/sample2.jpg",
+    caption: "サンプル音声 2",
+    sectionTitle: "文字の壁を、音が越える時代",
+  },
+  {
+    url: "null",
+    image: "/images/sample3.jpg",
+    caption: "サンプル音声 3",
+    sectionTitle: "電気が音を放送に変える時代",
+  },
+];
+
+export default function Page() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  return (
+    <div className={styles.container}>
+      {/* ページ上部のタイトル画像 */}
+      <img src="/title-y2.png" alt="Page Title" className={styles.headerImage} />
+
+      <h1 className={styles.title}>Audio Player Gallery</h1>
+
+      <div className={styles.cardRow}>
+        {AUDIO_ITEMS.map((item, idx) => (
+          <div key={idx} className={styles.card}>
+            <h2 className={styles.sectionTitle}>{item.sectionTitle}</h2>
+            <img src={item.image} alt={item.caption} className={styles.image} />
+            <p className={styles.caption}>{item.caption}</p>
+            <button
+              className={`${styles.linkButton} ${
+                activeIndex === idx ? styles.active : ""
+              }`}
+              onClick={() => setActiveIndex(idx)}
+            >
+              音声を再生
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <div className={styles.playerWrapper}>
+        {activeIndex !== null && (
+          <iframe
+            className={styles.hiddenPlayer}
+            src={`${AUDIO_ITEMS[activeIndex].url}?autoplay=1`}
+            title="YouTube audio player"
+            allow="autoplay"
           />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        )}
+      </div>
     </div>
   );
 }
