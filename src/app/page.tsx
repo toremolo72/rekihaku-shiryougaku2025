@@ -4,9 +4,9 @@ import { useState } from "react";
 import styles from "./page.module.css";
 
 type AudioItem = {
-  type: "youtube" | "file";
-  url: string;
-  images: string[];   // ← ここを配列に変更
+  type: "youtube" | "file" | "audio"; // ← audio を追加
+  url: string;        // YouTubeリンク or ファイルパス
+  images: string[];
   caption: string;
   sectionTitle: string;
 };
@@ -15,22 +15,22 @@ const AUDIO_ITEMS: AudioItem[] = [
   {
     type: "youtube",
     url: "https://www.youtube.com/embed/788t3AI0bBc?si=p4F8ZTVZaONYE8zP",
-    images: ["/images/doutaku.jpg"], // ← 複数OK
+    images: ["/images/doutaku.jpg"],
     caption: "銅鐸の音",
     sectionTitle: "文字がない時代",
   },
   {
-    type: "file",
-    url: "/videos/sample2.mov",
-    images: ["/images/sample2.jpg", "/images/sample2b.jpg"],
-    caption: "サンプル音声 2",
+    type: "audio",
+    url: "/audio/shisou.mp3",
+    images: ["/images/shisou.jpg"],
+    caption: "「音」が伝える近世思想",
     sectionTitle: "文字の壁を、音が越える時代",
   },
   {
     type: "file",
-    url: "/videos/radio.mp4",
+    url: "/videos/radio.mp4", // public/audio/sample.mp3 に配置
     images: ["/images/radio1.jpg", "/images/radio2.jpg"],
-    caption: "街頭録音の音",
+    caption: "ラジオの音",
     sectionTitle: "電気が音を放送に変える時代",
   },
 ];
@@ -76,37 +76,37 @@ export default function Page() {
       ))}
     </div>
 
-      <div className={styles.playerWrapper}>
-        {activeIndex !== null && (
-          <>
-            {AUDIO_ITEMS[activeIndex].type === "youtube" && (
-              <iframe
-                className={styles.hiddenPlayer}
-                src={`${AUDIO_ITEMS[activeIndex].url}&autoplay=1`}
-                title="YouTube audio player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            )}
-            {AUDIO_ITEMS[activeIndex].type === "file" && (
-              <video
-                className={styles.hiddenPlayer}
-                controls
-                autoPlay
-                // muted を付けると自動再生が保証される
-                // 音を出したい場合は ref を使ってクリック時に play() を呼ぶ方法もあり
-              >
-                <source
-                  src={AUDIO_ITEMS[activeIndex].url}
-                  type="video/mp4"   // mp4 は必ずこちら
-                />
-                お使いのブラウザは動画再生に対応していません。
-              </video>
-            )}
-          </>
+    <div className={styles.playerWrapper}>
+    {activeIndex !== null && (
+      <>
+        {AUDIO_ITEMS[activeIndex].type === "youtube" && (
+          <iframe
+            className={styles.hiddenPlayer}
+            src={`${AUDIO_ITEMS[activeIndex].url}&autoplay=1`}
+            title="YouTube audio player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
         )}
-      </div>
+
+        {AUDIO_ITEMS[activeIndex].type === "file" && (
+          <video className={styles.hiddenPlayer} controls autoPlay>
+            <source src={AUDIO_ITEMS[activeIndex].url} type="video/mp4" />
+            お使いのブラウザは動画再生に対応していません。
+          </video>
+        )}
+
+        {AUDIO_ITEMS[activeIndex].type === "audio" && (
+          <audio className={styles.hiddenPlayer} controls autoPlay>
+            <source src={AUDIO_ITEMS[activeIndex].url} type="audio/mpeg" />
+            お使いのブラウザは音声再生に対応していません。
+          </audio>
+        )}
+      </>
+    )}
+  </div>
     </div>
   );
 }
