@@ -12,9 +12,9 @@ type AudioItem = {
 
 const AUDIO_ITEMS: AudioItem[] = [
   {
-    url: "null",
-    image: "/images/sample1.jpg",
-    caption: "サンプル音声 1",
+    url: "https://www.youtube.com/watch?v=dnATDyulsZI",
+    image: "/images/doutaku.jpg",
+    caption: "銅鐸の音",
     sectionTitle: "文字がない時代",
   },
   {
