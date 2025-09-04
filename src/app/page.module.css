@@ -86,11 +86,18 @@
   }
 }
 
+.imageGallery {
+  display: flex;
+  flex-direction: column; /* ← 縦並び */
+  gap: 0.5rem;
+  align-items: center; /* 中央寄せ */
+  margin-bottom: 0.5rem;
+}
+
 .image {
   width: 100%;
   height: auto;
   border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .caption {
